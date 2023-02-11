@@ -7,7 +7,6 @@ import {
   X,
 } from 'react-feather';
 
-import { ShowPreviewContext } from '../ToastPlayground/ToastPlayground';
 import VisuallyHidden from '../VisuallyHidden';
 
 import styles from './Toast.module.css';
@@ -20,7 +19,7 @@ const ICONS_BY_VARIANT = {
 };
 
 function Toast({ message, variant = 'notice' }) {
-  const { isPopped, setIsPopped } = React.useContext(ShowPreviewContext);
+  const [isPopped, setIsPopped] = React.useState(true);
 
   if (!isPopped) {
     return;

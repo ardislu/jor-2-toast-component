@@ -10,7 +10,10 @@ function ToastPlayground() {
   return (
     <div className={styles.wrapper}>
       <header>
-        <img alt="Cute toast mascot" src="/toast.png" />
+        <picture>
+          <source srcSet="/toast.avif" type="image/avif" />
+          <img alt="Cute toast mascot" src="/toast.png" />
+        </picture>
         <h1>Toast Playground</h1>
       </header>
 

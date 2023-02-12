@@ -7,7 +7,7 @@ import {
   X,
 } from 'react-feather';
 
-import { ToastContext } from '../ToastPlayground';
+import { ToastContext } from '../ToastProvider';
 import VisuallyHidden from '../VisuallyHidden';
 
 import styles from './Toast.module.css';
@@ -20,13 +20,7 @@ const ICONS_BY_VARIANT = {
 };
 
 function Toast({ message, variant = 'notice', id }) {
-  const { toasts, setToasts } = React.useContext(ToastContext);
-
-  function close() {
-    const nextToasts = toasts.filter(t => t.id !== id);
-    setToasts(nextToasts);
-  }
-
+  const { removeToast } = React.useContext(ToastContext);
   const Icon = ICONS_BY_VARIANT[variant];
 
   return (
@@ -37,7 +31,7 @@ function Toast({ message, variant = 'notice', id }) {
       <p className={styles.content}>
         {message}
       </p>
-      <button className={styles.closeButton} onClick={close}>
+      <button className={styles.closeButton} onClick={() => removeToast(id)}>
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
